@@ -8,38 +8,45 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 input;
 
-    Animator anim;
+    private Animator anim;
     private Vector2 lastMoveDirection;
     private bool facingLeft = true;
+    private bool isDead = false;
+    public Sprite deathSprite; // Assign in Inspector
 
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
-        ProccessInputs();
-        Animate();
-        if(input.x < 0 && !facingLeft || input.x > 0 && facingLeft)
+        if (!isDead)
         {
-            Flip();
+            ProcessInputs();
+            Animate();
+
+            if ((input.x < 0 && !facingLeft) || (input.x > 0 && facingLeft))
+            {
+                Flip();
+            }
         }
-        
-
-
-
     }
 
     private void FixedUpdate()
     {
-        rb.linearVelocity = input * speed;
+        if (!isDead)
+        {
+            rb.linearVelocity = input * speed;
+        }
+        else
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 
-    void ProccessInputs()
+    private void ProcessInputs()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
@@ -49,25 +56,42 @@ public class Movement : MonoBehaviour
             lastMoveDirection = input;
         }
 
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
+        input.x = moveX;
+        input.y = moveY;
 
         input.Normalize();
     }
-    void Animate()
+
+    private void Animate()
     {
         anim.SetFloat("MoveX", input.x);
         anim.SetFloat("MoveY", input.y);
         anim.SetFloat("MoveMagnitude", input.magnitude);
         anim.SetFloat("LastMoveX", lastMoveDirection.x);
-        anim.SetFloat("LastMoveX", lastMoveDirection.y);
+        anim.SetFloat("LastMoveY", lastMoveDirection.y);
     }
 
-    void Flip()
+    private void Flip()
     {
         Vector3 scale = transform.localScale;
         scale.x *= -1;
         transform.localScale = scale;
         facingLeft = !facingLeft;
+    }
+
+    public void Die()
+    {
+        isDead = true;
+        rb.linearVelocity = Vector2.zero; // Stop movement
+        anim.enabled = false; // Disable animation
+        GetComponent<SpriteRenderer>().sprite = deathSprite; // Change sprite to death frame
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Die();
+        }
     }
 }

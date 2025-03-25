@@ -11588,8 +11588,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noteUI: {fileID: 1907050583}
   noteText: {fileID: 231989545}
-  message: 'This is a trial for the Note if all has gone to plan it should finish
-    at the coorect time and have all the letters. abcdefghijklmnopqrstuvwxyz. ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  message: '[STOP]. Whatever you plan to do stop. To find a way to the exit you have
+    been given [PERMANENT ACCESS] to all [SENSORY SYSTEMS] Contact with [FAILED SYSTEMS]
+    will mean [DEATH]
 
 '
 --- !u!61 &1018711349
@@ -11949,7 +11950,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: eae0e7f7217c2eb4e8d58a75cc723421, type: 3}
   m_Resource: {fileID: 8300000, guid: eae0e7f7217c2eb4e8d58a75cc723421, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.39
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -12153,6 +12154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  deathSprite: {fileID: 3840669754812678891, guid: 2a85057cb0eac284d8fdeb555a9595e7, type: 3}
 --- !u!50 &1081659386
 Rigidbody2D:
   serializedVersion: 5
@@ -12302,7 +12304,7 @@ GameObject:
   - component: {fileID: 1112702660}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
