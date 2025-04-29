@@ -6,11 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 568a5976afaf789449b1051366ff69b2
+  - enabled: 1
     path: Assets/Scenes/Scene one anim.unity
     guid: d2d4f0eca8e5a4547b978614c2ff9b8e
   - enabled: 1
     path: Assets/Scenes/Scene_one.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/reloading.unity
+    guid: 881b35277016d03418a2a57523f30daa
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

@@ -1,136 +1,103 @@
+using UnityEngine;
 using System.Collections;
 using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
+    public Transform[] waypoints;
+    public float speed = 2.0f;
+    public float waitTime = 2.0f;
 
-    public Transform[] waypoints; // Array to hold the waypoints
+    public Transform player; // Reference to the player
+    public float chaseDistance = 5.0f;
+    public float stopChasingDistance = 7.0f;
 
-    public float speed = 2.0f; // Speed of the patrol
+    private int currentWaypointIndex = 0;
+    private bool isWaiting = false;
+    private bool isChasing = false;
 
-    public float waitTime = 2.0f; // Time to wait at each waypoint
-
-
-
-    private int currentWaypointIndex = 0; // Index of the current waypoint
-
-    private bool isWaiting = false; // To track if the enemy is currently waiting
-
-
+    private Rigidbody2D rb;
 
     void Start()
-
     {
-
-        if (waypoints.Length > 0)
-
+        rb = GetComponent<Rigidbody2D>();
+        if (waypoints.Length > 0 && player != null)
         {
-
-            StartCoroutine(Patrol());
-
+            StartCoroutine(BehaviorLoop());
         }
-
     }
 
-
-
-    IEnumerator Patrol()
-
+    IEnumerator BehaviorLoop()
     {
-
         while (true)
-
         {
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-            if (!isWaiting)
-
+            if (isChasing)
             {
-
-                MoveTowardsWaypoint();
-
-                // Check if the enemy has reached the waypoint
-
-                if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
-
+                if (distanceToPlayer > stopChasingDistance)
                 {
-
-                    StartCoroutine(WaitAtWaypoint());
-
+                    isChasing = false;
                 }
-
+                else
+                {
+                    ChasePlayer();
+                }
+            }
+            else
+            {
+                if (distanceToPlayer < chaseDistance)
+                {
+                    isChasing = true;
+                }
+                else
+                {
+                    if (!isWaiting)
+                    {
+                        Patrol();
+                        if (Vector2.Distance(transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
+                        {
+                            StartCoroutine(WaitAtWaypoint());
+                        }
+                    }
+                }
             }
 
-            yield return null; // Wait for the next frame
-
+            yield return null;
         }
-
     }
 
-
-
-    void MoveTowardsWaypoint()
-
+    void Patrol()
     {
+        if (waypoints.Length == 0) return;
 
-        if (waypoints.Length == 0)
-
-            return;
-
-
-
-        // Calculate the direction to the current waypoint
-
-        Vector3 direction = (waypoints[currentWaypointIndex].position - transform.position).normalized;
-
-        float step = speed * Time.deltaTime; // Move speed per frame
-
-
-
-        // Move the enemy towards the waypoint
-
-        transform.position = Vector3.MoveTowards(transform.position, waypoints[currentWaypointIndex].position, step);
-
-
-
-        // Flip the enemy to face the direction of movement
-
-        FlipEnemy(direction);
-
+        Vector2 direction = (waypoints[currentWaypointIndex].position - transform.position).normalized;
+        rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+        FlipSprite(direction);
     }
 
-
-
-    void FlipEnemy(Vector3 direction)
-
+    void ChasePlayer()
     {
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.MovePosition(rb.position + direction * speed * Time.deltaTime);
+        FlipSprite(direction);
+    }
 
-        if (direction.magnitude > 0.01f) // If moving
-
+    void FlipSprite(Vector2 direction)
+    {
+        if (direction.x != 0)
         {
-
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90)); // Adjust the angle if needed
-
+            Vector3 localScale = transform.localScale;
+            localScale.x = Mathf.Sign(direction.x) * Mathf.Abs(localScale.x);
+            transform.localScale = localScale;
         }
-
     }
-
-
 
     IEnumerator WaitAtWaypoint()
-
     {
-
         isWaiting = true;
-
-        yield return new WaitForSeconds(waitTime); // Wait for the specified time
-
+        yield return new WaitForSeconds(waitTime);
         isWaiting = false;
-
-        currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length; // Move to the next waypoint
-
+        currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
     }
-
 }
-
