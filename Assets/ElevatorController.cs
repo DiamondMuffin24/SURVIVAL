@@ -8,6 +8,8 @@ public class ElevatorControllar : MonoBehaviour
 {
     public Animator elevatorAnimator;
     public Animator fadeAnimator;
+    public AudioSource audioSource;         // Assign in Inspector
+    public AudioClip selectionSound;
 
     public GameObject elevatorMenuUI; // Assign your ElevatorMenu panel here in Inspector
 
@@ -29,11 +31,15 @@ public class ElevatorControllar : MonoBehaviour
 
     public void OnSelectFloor(string sceneName)
     {
+        // Play sound
+        if (audioSource != null && selectionSound != null)
+            audioSource.PlayOneShot(selectionSound);
+
         // Close menu and resume game
         Time.timeScale = 1f;
         elevatorMenuUI.SetActive(false);
 
-        // Start elevator sequence
+        // Start elevator transition
         StartCoroutine(UseElevator(sceneName));
     }
 
