@@ -12,6 +12,7 @@ public class HandStuckManager : MonoBehaviour
     private bool isStuck = false;
     private float timer;
 
+
     void Update()
     {
         if (isStuck)
@@ -28,6 +29,7 @@ public class HandStuckManager : MonoBehaviour
             if (currentMashCount >= requiredMashCount)
             {
                 ReleaseHand();
+
             }
 
             if (timer <= 0)
@@ -41,6 +43,7 @@ public class HandStuckManager : MonoBehaviour
 
     public void TriggerHandStuck()
     {
+
         isStuck = true;
         timer = mashTimeLimit;
         currentMashCount = 0;

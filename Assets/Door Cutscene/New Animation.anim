@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Handtrapped anim
+  m_Name: New Animation
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -23,7 +23,7 @@ AnimationClip:
     - time: 0
       value: {fileID: -4913982344839117222, guid: acc4b8d71e8719546a6a61af6d12c89d, type: 3}
     - time: 0.083333336
-      value: {fileID: -1679085568475732275, guid: 941b79f6f409f844cae316c9cb04bc14, type: 3}
+      value: {fileID: -3449222428443549159, guid: acc4b8d71e8719546a6a61af6d12c89d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -47,7 +47,7 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -4913982344839117222, guid: acc4b8d71e8719546a6a61af6d12c89d, type: 3}
-    - {fileID: -1679085568475732275, guid: 941b79f6f409f844cae316c9cb04bc14, type: 3}
+    - {fileID: -3449222428443549159, guid: acc4b8d71e8719546a6a61af6d12c89d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

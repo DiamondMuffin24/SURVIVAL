@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 
 public class Movement : MonoBehaviour
+
 {
     public float speed = 0.5f;
     private Rigidbody2D rb;
@@ -12,6 +13,7 @@ public class Movement : MonoBehaviour
     private Vector2 lastMoveDirection;
     private bool facingLeft = true;
     private bool isDead = false;
+    public bool canMove = true;  // External scripts can toggle this
     public Sprite deathSprite; // Assign in Inspector
 
     private void Start()
@@ -22,6 +24,8 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
+        if (!canMove) return; //  Freeze movement during cutscene
+
         if (!isDead)
         {
             ProcessInputs();
