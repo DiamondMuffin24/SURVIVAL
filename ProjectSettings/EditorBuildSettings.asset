@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/Scenes/Main_Menu.unity
     guid: 568a5976afaf789449b1051366ff69b2
   - enabled: 1
     path: Assets/Scenes/Scene one anim.unity
@@ -20,6 +20,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/reloading.unity
     guid: 881b35277016d03418a2a57523f30daa
+  - enabled: 1
+    path: Assets/Scenes/interqctive cutscene.unity
+    guid: 7a1f3ff69a54a7943ab917a71880a5e0
+  - enabled: 1
+    path: Assets/Scenes/aftercutone.unity
+    guid: 2f22477573d1789419eeb33a7c7f7de7
+  - enabled: 1
+    path: Assets/Scenes/Settings.unity
+    guid: 35fe49dcc5ca9cd4c945afeb784f07c2
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

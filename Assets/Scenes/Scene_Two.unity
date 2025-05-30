@@ -608,6 +608,63 @@ Sprite:
   m_Bones: []
   m_ScriptableObjects: []
   m_SpriteID: 
+--- !u!1001 &168672246
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3639641596193412539, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_Name
+      value: PauseMENUMASTER
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440062141359434306, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 29.988932
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440062141359434306, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -40.362885
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440062141359434306, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.316821
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440062141359434306, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440062141359434306, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440062141359434306, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440062141359434306, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440062141359434306, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440062141359434306, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440062141359434306, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3a61f653b80289946a376671f92d9dc4, type: 3}
 --- !u!1 &231989543
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,11 +722,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'This is a trial for the Note if all has gone to plan it should finish
-    at the coorect time and have all the letters. abcdefghijklmnopqrstuvwxyz. ABCDEFGHIJKLMNOPQRSTUVWXYZ
+  m_text: 'Thats The End of the DEMO!
 
 
-'
+    Thanks for playing my game.
+
+    ~Joseph'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91432a960eeef08458978c31bf390878, type: 2}
   m_sharedMaterial: {fileID: 6125860317061650528, guid: 91432a960eeef08458978c31bf390878, type: 2}
@@ -12589,7 +12647,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  canMove: 1
   deathSprite: {fileID: 3840669754812678891, guid: 2a85057cb0eac284d8fdeb555a9595e7, type: 3}
+  audioSource: {fileID: 0}
+  footstepClips: []
+  footstepInterval: 0.4
 --- !u!50 &1081659386
 Rigidbody2D:
   serializedVersion: 5
@@ -14143,7 +14205,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1907050584
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14297,7 +14359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1920067342
 Transform:
   m_ObjectHideFlags: 0
@@ -14332,7 +14394,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1961872302
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15333,3 +15395,4 @@ SceneRoots:
   - {fileID: 1262544676}
   - {fileID: 737557184}
   - {fileID: 1862796777}
+  - {fileID: 168672246}

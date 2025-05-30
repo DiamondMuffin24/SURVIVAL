@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Collections;
 
 public class Movement : MonoBehaviour
-
 {
     public float speed = 0.5f;
     private Rigidbody2D rb;
@@ -13,18 +12,26 @@ public class Movement : MonoBehaviour
     private Vector2 lastMoveDirection;
     private bool facingLeft = true;
     private bool isDead = false;
-    public bool canMove = true;  // External scripts can toggle this
-    public Sprite deathSprite; // Assign in Inspector
+    public bool canMove = true;
+    public Sprite deathSprite;
+
+    [Header("Footstep Settings")]
+    public AudioSource audioSource;
+    public List<AudioClip> footstepClips;
+    public float footstepInterval = 0.4f; // Time between steps
+
+    private float footstepTimer;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        footstepTimer = footstepInterval;
     }
 
     private void Update()
     {
-        if (!canMove) return; //  Freeze movement during cutscene
+        if (!canMove) return;
 
         if (!isDead)
         {
@@ -35,6 +42,8 @@ public class Movement : MonoBehaviour
             {
                 Flip();
             }
+
+            HandleFootsteps(); // NEW: Footstep logic
         }
     }
 
@@ -86,9 +95,9 @@ public class Movement : MonoBehaviour
     public void Die()
     {
         isDead = true;
-        rb.linearVelocity = Vector2.zero; // Stop movement
-        anim.enabled = false; // Disable animation
-        GetComponent<SpriteRenderer>().sprite = deathSprite; // Change sprite to death frame
+        rb.linearVelocity = Vector2.zero;
+        anim.enabled = false;
+        GetComponent<SpriteRenderer>().sprite = deathSprite;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -97,5 +106,32 @@ public class Movement : MonoBehaviour
         {
             Die();
         }
+    }
+
+    // ------------------ FOOTSTEP SOUND LOGIC ------------------
+
+    private void HandleFootsteps()
+    {
+        if (input.magnitude > 0.1f)
+        {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f)
+            {
+                PlayFootstep();
+                footstepTimer = footstepInterval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f; // Reset so it triggers quickly next time
+        }
+    }
+
+    private void PlayFootstep()
+    {
+        if (footstepClips.Count == 0 || audioSource == null) return;
+
+        AudioClip clip = footstepClips[Random.Range(0, footstepClips.Count)];
+        audioSource.PlayOneShot(clip);
     }
 }
